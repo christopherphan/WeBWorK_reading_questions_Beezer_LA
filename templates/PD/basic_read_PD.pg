@@ -1,0 +1,166 @@
+## DESCRIPTION
+## A set of MC questions for Section PD of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "If \(m > t\), then what can you conclude?$PAR",
+  "\(S\) is linearly dependent.$PAR",
+  );
+
+$ans1->extra(
+"\(S\) does not span \(V\).$PAR",
+"\(S\) spans \(V\).$PAR",
+"\(S\) is linearly independent.$PAR"
+);
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+  "If \(m < t\), then what can you conclude?$PAR",
+  "\(S\) does not span \(V\).$PAR",
+  );
+
+$ans2->extra(
+  "\(S\) spans \(V\).$PAR",
+  "\(S\) is linearly independent.$PAR",
+  "\(S\) is linearly dependent.$PAR"
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+  "If \(m = t\) and \(S\) is linearly independent, then what can you conclude?$PAR",
+  "\(S\) spans \(V\).$PAR",
+  );
+
+$ans3->extra(
+  "\(S\) does not span \(V\).$PAR"
+);
+
+$ans4 = new_multiple_choice();
+
+$ans4->qa(
+  "If \(m=t\) and \(S\) spans \(V\), then what can you conclude?$PAR",
+ "\(S\) is linearly independent.$PAR",
+  );
+
+$ans4->extra(
+  "\(S\) is linearly dependent.$PAR"
+);
+
+$ans5 = new_multiple_choice();
+
+$ans5->qa(
+  "Suppose that \(U\) and \(V\) are subspaces of the vector space \(W\), such that \(U \subsetneq V\). What can you conclude?$PAR",
+ "\(\dim(U) < \dim(V)\).$PAR",
+  );
+
+$ans5->extra(
+  "\(\dim(U) > \dim(V)\).$PAR",
+  "\(\dim(U) = \dim(V)\).$PAR",
+);
+
+$ans5->makeLast(
+  "There is not enough information to conclude any of the above.$PAR",
+);
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-PD.html",
+   "Properties of Dimension", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+For questions (a)-(d), suppose that \(V\) is a vector space of dimension \(t\). Let \(S=\lbrace \mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3, \dots, \mathbf{v}_m \rbrace\) be a set of vectors from \(V\).$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(d)
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+$PAR
+
+(e)
+\{ $ans5->print_q() \}
+\{ $ans5->print_a() \}
+$PAR
+
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+ANS( radio_cmp( $ans4->correct_ans() ) );
+ANS( radio_cmp( $ans5->correct_ans() ) );
+
+ENDDOCUMENT();

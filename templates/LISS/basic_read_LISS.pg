@@ -1,0 +1,136 @@
+## DESCRIPTION
+## A set of MC questions for Section LISS of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+
+$ans1->qa(
+  "Suppose \(V\) is a vector space and \(S = \lbrace \mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_m\rbrace\) is a subset of \(V\). What does it mean for \(S\) to be $BBOLD linearly dependent$EBOLD?$PAR",
+  "There exist \(\alpha_1, \alpha_2, \dots, \alpha_m \in \mathbb{C}\) such that
+  \(\alpha_1 \mathbf{u}_1 + \alpha_2 \mathbf{u}_2 + \dots + \alpha_m \mathbf{u}_m = \mathbf{0}\) and \(\alpha_j \not = 0\) for some \(1 \leq j \leq m\).$PAR",
+  );
+
+$ans1->extra(
+"There exist \(\alpha_1, \alpha_2, \dots, \alpha_m \in \mathbb{C}\) such that
+\(\alpha_1 \mathbf{u}_1 + \alpha_2 \mathbf{u}_2 + \dots + \alpha_m \mathbf{u}_m = \mathbf{0}\).$PAR",
+"If \(\alpha_1 \mathbf{u}_1 + \alpha_2 \mathbf{u}_2 + \dots + \alpha_m \mathbf{u}_m = \mathbf{0}\), then \(\alpha_j = 0\) for all \(1 \leq j \leq m\).$PAR"
+);
+
+
+$ans1->makeLast(
+"None of the above.$PAR"
+);
+
+$ans2 = new_multiple_choice();
+
+
+$ans2->qa(
+  "Suppose \(V\) is a vector space and \(S = \lbrace \mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_m\rbrace\) is a subset of \(V\). What does it mean for \(S\) to $BBOLD span $EBOLD \(V\)?$PAR",
+  "If \(\mathbf{v} \in V\), then there exists \(\alpha_1, \alpha_2, \dots, \alpha_m \in \mathbb{C}\) such that \(\mathbf{v} = \alpha_1 \mathbf{u}_1 + \alpha_2 \mathbf{u}_2 + \dots + \alpha_m \mathbf{u}_m\).$PAR",
+  );
+
+$ans2->extra(
+  "If \(\mathbf{v} \in V\) and \(\mathbf{v} = \alpha_1 \mathbf{u}_1 + \alpha_2 \mathbf{u}_2 + \dots + \alpha_m \mathbf{u}_m\), then \(\alpha_j = 0\) for all \(1 \leq j \leq m\).$PAR",
+  "If \(\mathbf{v} \in V\) and \(\mathbf{v} = \alpha_1 \mathbf{u}_1 + \alpha_2 \mathbf{u}_2 + \dots + \alpha_m \mathbf{u}_m\), then \(\alpha_j = 0\) for some \(1 \leq j \leq m\).$PAR",
+  "We have \(\mathbf{u}_j \in V\) for all \(1 \leq j \leq m\).$PAR"
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+  "Suppose \(V\) is a vector space and \(B = \lbrace \mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_m\rbrace\) is a $BBOLD linearly independent $EBOLD subset of \(V\) that $BBOLD spans$EBOLD \(V\). Further suppose that \(\mathbf{w} \in V\). Then which of the following is guaranteed to be true? (Choose the $BBOLD strongest $EBOLD correct response.)$PAR",
+  "There exist $BBOLD unique $EBOLD scalars \(\alpha_1, \alpha_2, \dots, \alpha_m \in \mathbb{C}\) such that \(\alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \dots + \alpha_m \mathbf{v}_m = \mathbf{w}\).$PAR",
+  );
+
+$ans3->extra(
+  "There exist scalars (not necessarily unique) \(\alpha_1, \alpha_2, \dots, \alpha_m \in \mathbb{C}\) such that \(\alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \dots + \alpha_m \mathbf{v}_m = \mathbf{w}\).$PAR",
+  "If \(\mathbf{w} = \alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \dots + \alpha_m \mathbf{v}_m\), then \(\alpha_j = 0\) for some \(1 \leq j \leq m\).$PAR"
+);
+
+$ans3->makeLast("None of the above.$PAR").
+
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-LISS.html",
+   "Linear Independence and Spanning Sets", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+
+ENDDOCUMENT();

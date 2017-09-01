@@ -1,0 +1,208 @@
+## DESCRIPTION
+## A set of MC questions for Chapter LT of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_checkbox_multiple_choice();
+
+$ans1->qa(
+  "Complete the following definition by checking the appropriate combination of conditions: Suppose \(U\) and \(V\) are vector spaces, and \(T: U \rightarrow V\) is a function. Then \(T\) is a linear transformation if . . . $PAR",
+  "\(T(\mathbf{u}_1 + \mathbf{u}_2) = T(\mathbf{u}_1) + T(\mathbf{u}_2)\) for \(\mathbf{u}_1, \mathbf{u}_2 \in U\).$PAR",
+  "\(T(\alpha \mathbf{u}) = \alpha T(\mathbf{u})\) for \(\mathbf{u} \in U\) and \(\alpha \in \mathbb{C}\).$PAR",
+  );
+
+$ans1->extra(
+  "\(T(\alpha \mathbf{u}) = \overline{\alpha} T(\mathbf{u})\) for \(\mathbf{u} \in U\) and \(\alpha \in \mathbb{C}\).$PAR",
+  "\(T(\mathbf{u}_1 + \mathbf{u}_2) = T(\overline{\mathbf{u}_1}) + T(\overline{\mathbf{u}_2)}\) for \(\mathbf{u}_1, \mathbf{u}_2 \in U\).$PAR",
+  "\(T(\mathbf{u}_1) = T(\mathbf{u}_2)\) implies \(\mathbf{u}_1 = \mathbf{u}_2\).$PAR",
+  "For every \(\mathbf{v} \in V\), there exists \(\mathbf{u} \in U\) such that \(T(\mathbf{u}) = \mathbf{v}\).$PAR",
+  );
+
+$ans2 = new_checkbox_multiple_choice();
+
+$ans2->qa(
+  "Complete the following definition by checking the appropriate combination of conditions: Suppose \(U\) and \(V\) are sets, and \(T: U \rightarrow V\) is a function. Then \(T\) is injective (one-to-one) if . . .$PAR",
+  "\(T(\mathbf{u}_1) = T(\mathbf{u}_2)\) implies \(\mathbf{u}_1 = \mathbf{u}_2\).$PAR",
+  );
+
+$ans2->extra(
+  "\(T(\alpha \mathbf{u}) = \overline{\alpha} T(\mathbf{u})\) for \(\mathbf{u} \in U\) and \(\alpha \in \mathbb{C}\).$PAR",
+  "\(T(\mathbf{u}_1 + \mathbf{u}_2) = T(\overline{\mathbf{u}_1}) + T(\overline{\mathbf{u}_2)}\) for \(\mathbf{u}_1, \mathbf{u}_2 \in U\).$PAR",
+  "\(T(\mathbf{u}_1 + \mathbf{u}_2) = T(\mathbf{u}_1) + T(\mathbf{u}_2)\) for \(\mathbf{u}_1, \mathbf{u}_2 \in U\).$PAR",
+  "\(T(\alpha \mathbf{u}) = \alpha T(\mathbf{u})\) for \(\mathbf{u} \in U\) and \(\alpha \in \mathbb{C}\).$PAR",
+  "For every \(\mathbf{v} \in V\), there exists \(\mathbf{u} \in U\) such that \(T(\mathbf{u}) = \mathbf{v}\).$PAR",
+  );
+
+$ans3 = new_checkbox_multiple_choice();
+
+$ans3->qa(
+    "Complete the following definition by checking the appropriate combination of conditions: Suppose \(U\) and \(V\) are sets, and \(T: U \rightarrow V\) is a function. Then \(T\) is surjective (onto) if . . .$PAR",
+    "For every \(\mathbf{v} \in V\), there exists \(\mathbf{u} \in U\) such that \(T(\mathbf{u}) = \mathbf{v}\).$PAR",
+    );
+
+$ans3->extra(
+    "\(T(\mathbf{u}_1) = T(\mathbf{u}_2)\) implies \(\mathbf{u}_1 = \mathbf{u}_2\).$PAR",
+    "\(T(\alpha \mathbf{u}) = \overline{\alpha} T(\mathbf{u})\) for \(\mathbf{u} \in U\) and \(\alpha \in \mathbb{C}\).$PAR",
+    "\(T(\mathbf{u}_1 + \mathbf{u}_2) = T(\overline{\mathbf{u}_1}) + T(\overline{\mathbf{u}_2)}\) for \(\mathbf{u}_1, \mathbf{u}_2 \in U\).$PAR",
+    "\(T(\mathbf{u}_1 + \mathbf{u}_2) = T(\mathbf{u}_1) + T(\mathbf{u}_2)\) for \(\mathbf{u}_1, \mathbf{u}_2 \in U\).$PAR",
+    "\(T(\alpha \mathbf{u}) = \alpha T(\mathbf{u})\) for \(\mathbf{u} \in U\) and \(\alpha \in \mathbb{C}\).$PAR",
+    );
+
+$ans4 = new_checkbox_multiple_choice();
+
+$ans4->qa(
+      "Complete the following definition by checking the appropriate combination of conditions: Suppose \(U\) and \(V\) are sets, and \(T: U \rightarrow V\) is a function. Then \(T\) is bijective if . . .$PAR",
+      "For every \(\mathbf{v} \in V\), there exists \(\mathbf{u} \in U\) such that \(T(\mathbf{u}) = \mathbf{v}\).$PAR",
+      "\(T(\mathbf{u}_1) = T(\mathbf{u}_2)\) implies \(\mathbf{u}_1 = \mathbf{u}_2\).$PAR",
+      );
+
+$ans4->extra(
+      "\(T(\alpha \mathbf{u}) = \overline{\alpha} T(\mathbf{u})\) for \(\mathbf{u} \in U\) and \(\alpha \in \mathbb{C}\).$PAR",
+      "\(T(\mathbf{u}_1 + \mathbf{u}_2) = T(\overline{\mathbf{u}_1}) + T(\overline{\mathbf{u}_2)}\) for \(\mathbf{u}_1, \mathbf{u}_2 \in U\).$PAR",
+      "\(T(\mathbf{u}_1 + \mathbf{u}_2) = T(\mathbf{u}_1) + T(\mathbf{u}_2)\) for \(\mathbf{u}_1, \mathbf{u}_2 \in U\).$PAR",
+      "\(T(\alpha \mathbf{u}) = \alpha T(\mathbf{u})\) for \(\mathbf{u} \in U\) and \(\alpha \in \mathbb{C}\).$PAR",
+      );
+
+$ans5 = new_multiple_choice();
+
+$ans5->qa(
+    "Suppose \(T: U \rightarrow V\) is an injective linear transformation. Then what is \(\mathcal{K}(T)\)?$PAR",
+    "\(\lbrace \mathbf{0} \rbrace\).$PAR",
+    );
+
+$ans5->extra(
+    "\(\lbrace T(\mathbf{u}) : \mathbf{u} \in U\rbrace\).$PAR",
+    "\(\lbrace \mathbf{u} \in U : T(\mathbf{u}) \not = \mathbf{0}\rbrace\).$PAR",
+    "\(V\).$PAR"
+    );
+
+$ans6 = new_multiple_choice();
+
+$ans6->qa(
+    "Suppose \(T: \mathbb{C}^n \rightarrow \mathbb{C}^m\) is a linear transformation. Then which is guaranteed to be true?$PAR",
+    "There exists an \(m \times n\) matrix \(A\) such that \(T(\mathbf{x}) = A\mathbf{x}\) for \(\mathbf{x} \in \mathbb{C}^n\).$PAR",
+    );
+
+$ans6->extra(
+    "There exists a nonsingular \(m \times n\) matrix \(A\) such that \(T(\mathbf{x}) = A\mathbf{x}\) for \(\mathbf{x} \in \mathbb{C}^n\).$PAR",
+    "\(T\) is injective.$PAR",
+    "\(T\) is surjective.$PAR",
+    );
+
+$ans7 = new_checkbox_multiple_choice();
+
+$ans7->qa(
+    "Suppose \(U\) is a vector space with a finite basis \(\lbrace \mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_m\rbrace\) with \(m\) elements. Then which of the following is true? (Check all that apply.)$PAR",
+    "\(U \cong \mathbb{C}^m\).$PAR",
+    "\(T: U \rightarrow \mathbb{C}^m\) defined by \(T(\sum_{j=1}^m \alpha_j \mathbf{u}_j) = \begin{bmatrix} \alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_m\end{bmatrix}\) is a invertible linear transformation.$PAR",
+    );
+
+$ans7->extra(
+    "\(\dim(U) < m\).$PAR",
+    "\(\dim(U) > m\).$PAR",
+    "For the linear transformation \(T: U \rightarrow \mathbb{C}^m\) defined by \(T(\sum_{j=1}^m \alpha_j \mathbf{u}_j) = \begin{bmatrix} \alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_m\end{bmatrix}\), there exists a nonzero vector \(\mathbf{u} \in U\) such that \(T(\mathbf{u}) = \mathbf{0}\).$PAR",
+    );
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+The purpose of this problem is to give you an idea of some of the multiple choice questions (relating to the material since the third midterm, from Chapter LT) that might appear on the final.$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(d)
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+$PAR
+
+(e)
+\{ $ans5->print_q() \}
+\{ $ans5->print_a() \}
+$PAR
+
+(f)
+\{ $ans6->print_q() \}
+\{ $ans6->print_a() \}
+$PAR
+
+(g)
+\{ $ans7->print_q() \}
+\{ $ans7->print_a() \}
+$PAR
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+$showPartialCorrectAnswers = 1;
+
+ANS( checkbox_cmp( $ans1->correct_ans() ) );
+ANS( checkbox_cmp( $ans2->correct_ans() ) );
+ANS( checkbox_cmp( $ans3->correct_ans() ) );
+ANS( checkbox_cmp( $ans4->correct_ans() ) );
+ANS( radio_cmp( $ans5->correct_ans() ) );
+ANS( radio_cmp( $ans6->correct_ans() ) );
+ANS( checkbox_cmp( $ans7->correct_ans() ) );
+
+
+ENDDOCUMENT();

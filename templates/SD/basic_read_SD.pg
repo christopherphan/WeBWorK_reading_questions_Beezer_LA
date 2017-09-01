@@ -1,0 +1,134 @@
+## DESCRIPTION
+## A set of MC questions for Section SD of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "Let \(A\) and \(B\) be \(n \times n\) matrices. What does it mean for \(A\) to be similar to \(B\)?$PAR",
+  "There exists a nonsingular \(n \times n\) matrix \(S\) such that \(S^{-1}AS = B\).$PAR",
+  );
+
+$ans1->extra(
+"\(A\) is row-equivalent to \(B\).$PAR",
+"\(\det(A) = \det(B)\).$PAR",
+"There exists a nonsingular \(n \times n\) matrix \(S\) such that \(SAS = B\).$PAR"
+);
+
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+  "Suppose \(A\) and \(B\) are similar \(n \times n\) matrices. Which of the following statements is true?$PAR",
+  "\(p_A(x) = p_B(x)\).$PAR",
+  );
+
+$ans2->extra(
+      "\(AB\) is nonsingular.$PAR",
+      "\(A^{-1} = B\).$PAR",
+      "\(p_A(x) = -p_B(x)\).$PAR",
+    );
+
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+    "Suppose \(A\) is an \(n \times n\) matrix, and \(D\) is a diagonal \(n \times n\) matrix which is similar to \(A\). Then what describes the diagonal entries of \(D\)?$PAR",
+    "The eigenvalues of \(A\).$PAR",
+    );
+
+$ans3->extra(
+    "The algebraic multiplicities of the eigenvalues of \(A\).$PAR",
+    "The geometric multiplicities of the eigenvalues of \(A\).$PAR",
+    "An eigenvector of \(A\).$PAR",
+  );
+
+
+
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-SD.html",
+   "Similarity and Diagonalization", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+
+ENDDOCUMENT();

@@ -1,0 +1,226 @@
+## DESCRIPTION
+## A set of MC questions for Section MM of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_checkbox_multiple_choice();
+
+$ans1->qa(
+  "Which of the following statements are true? (Check all that apply.) $PAR",
+  "\(A(B + C) = AB + AC\) for any \(A \in M_{mn}\) and \(B, C \in M_{np}\).$PAR",
+  "\(A(BC) = (AB)C\) for any \(A \in M_{mn}, B \in M_{np}, C \in M_{ps}\).$PAR",
+  "\((AB)^t = B^t A^t\) for any \(A \in M_{mn}\) and \(B \in M_{np}\).$PAR",
+  "\((AB)^* = B^* A^*\) for any \(A \in M_{mn}\) and \(B \in M_{np}\).$PAR",
+  "\(\langle A \mathbf{x}, \mathbf{y}\rangle = \langle \mathbf{x}, A^* \mathbf{y}\rangle\) for \(A \in M_{mn}\), \(\mathbf{x} \in \mathbb{C}^n\) and \(\mathbf{y} \in \mathbb{C}^m\).$PAR"
+  );
+
+$ans1->extra(
+"\(AB = BA\) for any two matrices \(A\) and \(B\).$PAR",
+"\((AB)^t = A^t B^t\) for any \(A \in M_{mn}\) and \(B \in M_{np}\).$PAR",
+"\((AB)^* = A^* B^*\) for any \(A \in M_{mn}\) and \(B \in M_{np}\).$PAR",
+"\(\langle A \mathbf{x}, \mathbf{y}\rangle = \langle \mathbf{x}, A \mathbf{y}\rangle\) for \(A \in M_{mn}\), \(\mathbf{x} \in \mathbb{C}^n\) and \(\mathbf{y} \in \mathbb{C}^m\).$PAR"
+);
+
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+"A vector \(\mathbf{x}\) is a solution to \(\mathcal{LS}(A, \mathbf{b})\) if and only if . . . $PAR",
+"\(A\mathbf{x} = \mathbf{b}\).$PAR"
+);
+
+$ans2->extra(
+"\(A\mathbf{b} = \mathbf{x}\).$PAR",
+"\(A = \mathbf{x} \mathbf{b}\).$PAR"
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+"Let \(A\) be a matrix and \(\mathbf{x} \in \mathbb{C}^m\) be a vector. For the product \(A\mathbf{x}\) to be defined, which condition must be true?$PAR",
+"\(A\) has \(m\) columns.$PAR"
+);
+
+$ans3->extra(
+"\(A\) has \(m\) rows.$PAR",
+"\(A\) is a \(m \times m\) matrix.$PAR"
+);
+
+$ans4 = new_multiple_choice();
+
+$ans4->qa(
+"Let \(A\) be an \(m \times n\) matrix and \(\mathbf{x}\) be a vector. If the product \(A\mathbf{x}\) is defined, what kind of object will it be?$PAR",
+"A vector of size \(m\) (the number of rows of \(A\)).$PAR"
+);
+
+$ans4->extra(
+"A vector of size \(n\) (the number of columns of \(A\)).$PAR",
+"Another \(m \times n\) matrix.$PAR"
+);
+
+$ans5 = new_multiple_choice();
+
+$ans5->qa(
+"Let \(A\) and \(B\) be matrices. For the product \(AB\) to be defined, which condition must be true?$PAR",
+"The number of columns of \(A\) is equal to the number of rows of \(B\).$PAR"
+);
+
+$ans5->extra(
+"The number of rows of \(A\) is equal to the number of columns of \(B\).$PAR",
+"\(A\) and \(B\) must be the same size.$PAR"
+);
+
+$ans6 = new_multiple_choice();
+
+$ans6->qa(
+"Let \(A\) and \(B\) be matrices. If the product \(AB\) is defined, what kind of object will it be?$PAR",
+"An \(m \times p\) matrix, where \(m\) is the number of rows of \(A\), and \(p\) is the number of columns of \(B\).$PAR"
+);
+
+$ans6->extra(
+"An \(m \times p\) matrix, where \(m\) is the number of columns of \(A\), and \(p\) is the number of rows of \(B\).$PAR",
+"A matrix that is the same size as both \(A\) and \(B\).$PAR",
+"A complex number.$PAR"
+);
+
+$ans7 = new_multiple_choice();
+
+$ans7->qa(
+"Suppose \(\mathbf{x}, \mathbf{y} \in \mathbb{C}^m\). Consider \(\mathbf{x}\) and \(\mathbf{y}\) as \(m \times 1\) matrices. Then which of the following is (guaranteed to be) equal to \(\langle \mathbf{x}, \mathbf{y}\rangle\)?$PAR",
+"\(\mathbf{x}^* \,\mathbf{y}\).$PAR"
+);
+
+$ans7->extra(
+"\(\mathbf{x}^t \, \mathbf{y}\).$PAR",
+"\(\mathbf{x}\, \mathbf{y}.\)$PAR",
+"\(\overline{\mathbf{x}}\, \mathbf{y}.\)$PAR"
+);
+
+
+$ans8 = new_multiple_choice();
+
+$ans8->qa(
+"What does it mean for a matrix \(A\) to be Hermitian?$PAR",
+"\(A^* = A\).$PAR"
+);
+
+$ans8->extra(
+"\((A^*)^* = A\).$PAR",
+"\(A^t = A\)$PAR",
+"\(\overline{A} = A.\)$PAR"
+);
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-MM.html",
+   "Matrix multiplication", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(d)
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+$PAR
+
+(e)
+\{ $ans5->print_q() \}
+\{ $ans5->print_a() \}
+$PAR
+
+(f)
+\{ $ans6->print_q() \}
+\{ $ans6->print_a() \}
+$PAR
+
+(g)
+\{ $ans7->print_q() \}
+\{ $ans7->print_a() \}
+$PAR
+
+(h)
+\{ $ans8->print_q() \}
+\{ $ans8->print_a() \}
+$PAR
+
+$PAR
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( checkbox_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+ANS( radio_cmp( $ans4->correct_ans() ) );
+ANS( radio_cmp( $ans5->correct_ans() ) );
+ANS( radio_cmp( $ans6->correct_ans() ) );
+ANS( radio_cmp( $ans7->correct_ans() ) );
+ANS( radio_cmp( $ans8->correct_ans() ) );
+
+ENDDOCUMENT();

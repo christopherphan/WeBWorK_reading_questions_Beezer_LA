@@ -1,0 +1,82 @@
+## DESCRIPTION
+## Reading question 1 from section PDM of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Robert A. Beezer')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was coded by Christopher Phan
+## and is an implementation of a reading question
+## from Robert A. Beezer's A First Course in Linear Algebra
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGessaymacros.pl"
+);
+
+
+TEXT(beginproblem());
+install_problem_grader(~~&std_problem_grader);
+
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-PDM.html",
+   "Properties of Determinants of Matrices", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+$BBOLD Section $LQ Properties of Determinants of Matrices$RQ Reading Question 1: $EBOLD$PAR
+
+Consider the two matrices below, and suppose you already have computed \(\det(A)=−120\). What is \(\det(B)\)? Why?
+\[\begin{aligned}
+A&=
+\begin{bmatrix}
+ 0 & 8 & 3 & -4 \\
+ -1 & 2 & -2 & 5 \\
+ -2 & 8 & 4 & 3 \\
+ 0 & -4 & 2 & -3
+\end{bmatrix}
+&
+B&=
+\begin{bmatrix}
+ 0 & 8 & 3 & -4 \\
+ 0 & -4 & 2 & -3 \\
+ -2 & 8 & 4 & 3 \\
+ -1 & 2 & -2 & 5
+\end{bmatrix}
+\end{aligned}\]
+$PAR
+\{ essay_box(15,60) \}
+$PAR
+
+(Your answer will be read and graded manually at a later time.)
+$PAR
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+
+
+$showPartialCorrectAnswers = 0;
+
+ANS( essay_cmp() );
+
+
+
+ENDDOCUMENT();

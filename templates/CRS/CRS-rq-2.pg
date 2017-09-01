@@ -1,0 +1,65 @@
+## DESCRIPTION
+## Reading question 2 from section CRS of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Robert A. Beezer')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was coded by Christopher Phan
+## and is an implementation fo a reading question
+## from Robert A. Beezer's A First Course in Linear Algebra
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGessaymacros.pl"
+);
+
+
+TEXT(beginproblem());
+install_problem_grader(~~&std_problem_grader);
+
+
+BEGIN_TEXT
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-CRS.html",
+   "Column and Row Spaces", "TARGET='_blank'") \} and then answer the following question:$PAR
+
+$BBOLD Section $LQ Column and Row Spaces$RQ Reading Question 2: $EBOLD$PAR
+
+Suppose that \(A\) is an \(n \times n\) nonsingular matrix. What can you say about its column space?
+
+$PAR
+\{ essay_box(15,60) \}
+$PAR
+
+(Your answer will be read and graded manually at a later time.)
+$PAR
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+
+
+$showPartialCorrectAnswers = 0;
+
+ANS( essay_cmp() );
+
+
+
+ENDDOCUMENT();

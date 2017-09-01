@@ -1,0 +1,155 @@
+## DESCRIPTION
+## A set of MC questions for Section EE of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "Let \(A\) be an \(n \times n\) matrix, and \(\mathbf{x} \in \mathbb{C}^n\) with \(\mathbf{x} \not = 0\). What does it mean for \(\mathbf{x}\) to be an $BBOLD eigenvector$EBOLD of \(A\)?$PAR",
+  "\(A\mathbf{x} = \lambda\mathbf{x}\) for some \(\lambda \in \mathbb{C}\).$PAR",
+  );
+
+$ans1->extra(
+"\(A\mathbf{x} = \mathbf{x}\).$PAR",
+"\(A\mathbf{x} \in \mathcal{N}(A)\).$PAR",
+"\(\lambda\mathbf{x} \in \mathcal{C}(A)\) for some \(\lambda \in \mathbb{C}\).$PAR"
+);
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+  "Suppose that \(A\) is a square matrix. Then what do you know about its eigenvalues?$PAR",
+  "\(A\) must have at least one eigenvalue, but may have more than one.$PAR",
+  );
+
+$ans2->extra(
+  "\(A\) may or may not have an eigenvalue, but if \(A\) has an eigenvalue, it is unique.$PAR",
+  "\(A\) has a unique eigenvalue.$PAR"
+);
+
+$ans3 = new_checkbox_multiple_choice();
+
+$ans3->qa(
+  "Let \(A\) be an \(n \times n\) matrix, and let \(p_A(x) = \det\left(A - xI_n\right)\), the characteristic polynomial of \(A\). Which of the following statements are true? (Check all that apply.)$PAR",
+  "If \(\lambda \in \mathbb{C}\) is an eigenvalue of \(A\), then \(p_A(\lambda) = 0\).$PAR",
+  "If \(\lambda \in \mathbb{C}\) and \(p_A(\lambda) = 0\), then \(\lambda\) is an eigenvalue of \(A\).$PAR"
+  );
+
+$ans4 = new_multiple_choice();
+
+$ans4->qa(
+    "Suppose that \(A\) is an \(n \times n\) matrix and \(\lambda\in \mathbb{C}\) is an eigenvalue of \(A\). Then what is the eigenspace of \(A\) for \(\lambda\)?$PAR",
+    "\(\mathcal{N}\left(A - \lambda I_n\right)\).$PAR",
+    );
+
+$ans4->extra(
+    "\(\mathcal{C}\left(A - \lambda I_n\right)\)$PAR",
+    "\(\mathcal{C}\left(\lambda I_n\right)\)$PAR",
+    "\(\mathcal{N}\left(\lambda I_n\right)\)$PAR",
+  );
+
+$ans99 = new_multiple_choice();
+
+$ans99->qa(
+  "What do you call a baby eigensheep?$PAR",
+  "A lamb, duh.$PAR",
+  );
+
+
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-EE.html",
+   "Eigenvalues and Eigenvectors", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(d)
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+$PAR
+
+(e)
+\{ $ans99->print_q() \}
+\{ $ans99->print_a() \}
+$PAR
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( checkbox_cmp( $ans3->correct_ans() ) );
+ANS( radio_cmp( $ans4->correct_ans() ) );
+ANS( radio_cmp( $ans99->correct_ans() ) );
+
+ENDDOCUMENT();

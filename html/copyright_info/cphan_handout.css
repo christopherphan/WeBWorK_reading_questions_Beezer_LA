@@ -1,0 +1,20 @@
+@charset "UTF-8";
+/* CSS Document */
+
+BODY {
+ margin-left: 10%;
+ margin-right: 10%;
+ margin-top: 2em;
+ margin-bottom: 2em;
+ background: #FFFFFF;
+ color: #000000;
+ font-family: Georgia, Palatino, Times New Roman, serif;
+}
+
+A:link { color: #663399; text-decoration: none;}
+A:visited{ color: #6600CC; text-decoration: none;}
+A:active{ color: #FF0000; text-decoration: none;}
+
+A:link IMG { border: none; }
+A:visited IMG { border: none; }
+A:active IMG{ border: none; }

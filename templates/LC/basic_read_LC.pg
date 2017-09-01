@@ -1,0 +1,122 @@
+## DESCRIPTION
+## A set of MC questions for Section LC of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_checkbox_multiple_choice();
+
+$ans1->qa(
+  "A linear combination involves what? (Check all that apply.)$PAR",
+  "Vectors$PAR",
+  "Complex numbers$PAR",
+  "Addition of vectors$PAR",
+  "Scalar multiplication$PAR"
+  );
+
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+"Suppose \(A\) is a matrix and \(\bf b\) is a vector, and \({\bf x}\) is a solution to the linear system \(\mathcal{LS}(A, {\bf b})\). Choose the correct statement:$PAR",
+"\({\bf b}\) is a linear combination of the columns of \(A\).$PAR"
+);
+
+$ans2->extra(
+"\({\bf x}\) is a linear combination of the columns of \(A\).$PAR",
+"Each column of \(A\) will be a linear combination of \({\bf b}\) and \({\bf x}\).$PAR"
+);
+
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+"Suppose \(\bf w\) and \(\bf y\) are both solutions to \(\mathcal{LS}(A, {\bf b})\). Then what do we know?$PAR",
+"\({\bf y} = {\bf w} + {\bf z}\) for some \({\bf z} \in \mathcal{N}(A)\).$PAR"
+);
+
+$ans3->extra(
+"\({\bf y} + {\bf w} = {\bf 0}\). $PAR",
+"\({\bf y} - {\bf w} = {\bf b} + {\bf z}\) for some \({\bf z} \in \mathcal{N}(A)\).$PAR"
+);
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-VO.html",
+   "VO", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( checkbox_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+
+ENDDOCUMENT();

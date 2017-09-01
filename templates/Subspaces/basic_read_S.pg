@@ -1,0 +1,153 @@
+## DESCRIPTION
+## A set of MC questions for Section S of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_checkbox_multiple_choice();
+
+
+$ans1->qa(
+  "Suppose \(W\) and \(V\) are vector spaces. Which conditions are required for \(W\) to be a subspace of \(V\)? (Check all that apply.)$PAR",
+  "\(W \subseteq V\).$PAR",
+  "\(W\) and \(V\) have identical definitions of scalar multiplication.$PAR",
+  "\(W\) and \(V\) have identical definitions of vector addition.$PAR",
+  );
+
+$ans1->extra(
+"\(W = \mathbb{C}^m\) and \(V = \mathbb{C}^n\) where \(m \leq n\).$PAR",
+"\(W \subset V\).$PAR",
+"\(\mathbf{v} + \mathbf{w} \in W\) for \(\mathbf{v} \in V\) and \(\mathbf{w} \in W\).$PAR"
+);
+
+$ans2 = new_checkbox_multiple_choice();
+
+$ans2->qa(
+  "Suppose \(V\) is a vector space, and \(W \subseteq V\). Then \(W\) is a subspace of \(V\) if and only if which three conditions are met? (Check three.)$PAR",
+  "\(W\) is nonempty.$PAR",
+  "If \(\mathbf{x}, \mathbf{y} \in W\), then \(\mathbf{x} + \mathbf{y} \in W\).$PAR",
+  "If \(\alpha \in \mathbb{C}\) and \(\mathbf{x} \in W\), then \(\alpha \mathbf{x} \in W\).$PAR"
+  );
+
+$ans2->extra(
+"If \(\alpha \in \mathbb{C}\) and \(\mathbf{x} \in V\), then \(\alpha \mathbf{x} \in W\).$PAR",
+"\(W \subset V\).$PAR",
+"\(W\) contains at least two elements.$PAR"
+);
+
+$ans3 = new_checkbox_multiple_choice();
+
+$ans3->qa(
+  "Let \(A\) be a \(n \times n\) matrix. Which of the following are subspaces of \(\mathbb{C}^n\)? (Check all that apply.)$PAR",
+  "The row space of \(A\).$PAR",
+  "The column space of \(A\).$PAR",
+  "The null space of \(A\).$PAR",
+  "The left null space of \(A\).$PAR"
+  );
+
+
+$ans4 = new_multiple_choice();
+
+$ans4->qa(
+  "Let \(V\) be a vector space and \(S = \lbrace \mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_m\rbrace\). Which of the following is a subspace of \(V\)?$PAR",
+  "The span of \(S\), \(\langle S \rangle\), the set of all linear combinations of \(S\).$PAR"
+  );
+
+$ans4->extra(
+"The set \(S\).$PAR",
+"Without more information, we can not say for certain.$PAR",
+);
+
+$ans4->makeLast(
+"Without more information, we can not say for certain.$PAR"
+);
+
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-S.html",
+   "Subspaces", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(d)
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+$PAR
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( checkbox_cmp( $ans1->correct_ans() ) );
+ANS( checkbox_cmp( $ans2->correct_ans() ) );
+ANS( checkbox_cmp( $ans3->correct_ans() ) );
+ANS( radio_cmp( $ans4->correct_ans() ) );
+
+
+ENDDOCUMENT();

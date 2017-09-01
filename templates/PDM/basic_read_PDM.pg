@@ -1,0 +1,132 @@
+## DESCRIPTION
+## A set of MC questions for Section PDM of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "Suppose \(A\) is an \(n \times n\) matrix. Then \(A\) is singular if and only if . . . $PAR",
+  "\(\det(A) = 0\).$PAR",
+  );
+
+$ans1->extra(
+"\(\det(A) \not = 0\).$PAR",
+"\(\det(A) = n\).$PAR",
+"\(\det(A) \not = n\).$PAR"
+);
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+  "Suppose that \(A\) is a square matrix. Let \(B\) be the square matrix obtained from \(A\) by multiplying row \(j\) by the scalar \(\alpha\). Then . . . $PAR",
+  "\(\det(B) = \alpha \det(A)\).$PAR",
+  );
+
+$ans2->extra(
+  "\(\det(B) = -\det(A)\).$PAR",
+  "\(\det(B) = \det(A)\).$PAR"
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+  "Let \(A\) be a square matrix with two identical rows. Then . . .$PAR",
+  "\(\det(A) = 0\).$PAR",
+  );
+
+$ans3->extra(
+  "\(\det(A) = 2\).$PAR",
+  "\(\det(A) = 1\).$PAR",
+);
+
+$ans3->makeLast(
+  "There is not enough information to conclude any of the above.$PAR",
+);
+
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-PDM.html",
+   "Properties of Determinants of Matrices", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+
+
+ENDDOCUMENT();

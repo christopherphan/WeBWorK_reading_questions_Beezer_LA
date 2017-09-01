@@ -1,0 +1,131 @@
+## DESCRIPTION
+## A set of MC questions for Section SET of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_checkbox_multiple_choice();
+
+$ans1->qa(
+  "What facts are true about sets? (Check all that apply.)$PAR",
+  "Sets are unordered.$PAR",
+  "A set is a subset of itself.$PAR",
+  "It's possible to have a set with no elements.$PAR"
+  );
+
+$ans1->extra(
+  "A set is a proper subset of itself.$PAR",
+  "Sets contain only numbers.$PAR",
+  "\(\{1, 2, 3\}\) is a different set than \(\{3, 2, 1\}\).$PAR"
+  );
+
+
+$ans2 = new_checkbox_multiple_choice();
+
+$ans2->qa(
+"Which set operations are discussed in this section: (Check all that apply.)$PAR",
+"Set union.$PAR",
+"Set interesction.$PAR",
+"Set complement.$PAR"
+);
+
+$ans2->extra(
+"Set addition.$PAR",
+"Set division.$PAR"
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+"If the set \(S\) is finite, which best describes \(|S|\)?$PAR",
+"The number of elements in \(S\).$PAR",
+);
+
+$ans3->extra(
+"The set containing the absolute value of every number in \(S\).$PAR",
+"\(\sqrt{S^2}\).$PAR"
+);
+
+$ans3->makeLast("None of the above.$PAR");
+
+
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-SET.html",
+   "SET", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( checkbox_cmp( $ans1->correct_ans() ) );
+ANS( checkbox_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+
+ENDDOCUMENT();

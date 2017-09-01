@@ -1,0 +1,134 @@
+## DESCRIPTION
+## A set of MC questions for Section PEE of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "Suppose \(A\) is an \(n \times n\) matrix, \(\lambda_1, \lambda_2, \dots, \lambda_p \in \mathbb{C}\) are distinct eigenvalues for \(A\) (i.e. \(\lambda_j \not = \lambda_k\) when \(j \not = k\)), and \(S = \lbrace \mathbf{x}_1, \mathbf{x}_2, \dots \mathbf{x}_p\rbrace\) is a set of eigenvectors for \(A\), where the eigenvector \(\mathbf{x}_j\) is associated with the eigenvalue \(\lambda_j\) (i.e. \(A\mathbf{x}_j = \lambda_j \mathbf{x}_j\)). Then what do we know about the set \(S\)?$PAR",
+  "\(S\) is linearly independent.$PAR",
+  );
+
+$ans1->extra(
+"\(S\) is linearly dependent.$PAR",
+"\(S\) spans \(\mathbb{C}^m\).$PAR",
+"\(S\) spans \(\mathcal{C}(A)\).$PAR"
+);
+
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+  "Suppose \(A\) is an \(n \times n\) with $BBOLD real$EBOLD entries, and \(\lambda \in \mathbb{C}\) is a non-real eigenvalue of \(A\). What is another eigenvalue of \(A\)?$PAR",
+  "\(\overline{\lambda}\).$PAR",
+  );
+
+$ans2->extra(
+      "\(-\lambda\).$PAR",
+      "\(1/\lambda\).$PAR",
+      "\(\overline{1/\lambda}\).$PAR",
+    );
+
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+    "Suppose that \(A\) is an \(n \times n\) matrix and \(\lambda_1, \lambda_2, \dots, \lambda_k\) are all of the distinct eigenvalues for \(A\). Then what is the sum of the algebraic multiplicities, \(\sum_{j = 1}^k \alpha_A(\lambda_j)\)?$PAR",
+    "\(n\), the number of columns of \(A\).$PAR",
+    );
+
+$ans3->extra(
+    "\(r(A)\), the rank of \(A\).$PAR",
+    "\(n(A)\), the nullity of \(A\).$PAR",
+    "\(\sum_{j=1}^k \gamma_A(\lambda_j)\), the sum of the geometric multiplicities.$PAR",
+  );
+
+
+
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-PEE.html",
+   "Properties of Eigenvalues and Eigenvectors", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+
+ENDDOCUMENT();

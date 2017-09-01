@@ -1,0 +1,110 @@
+## DESCRIPTION
+## A set of MC questions for Section HSE of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "Let \(A\) be a square matrix. What does it mean for \(A\) to be nonsingular?$PAR",
+  "The only solution to the system \( {\mathcal L}{\mathcal S}\left(A,{\bf 0}\right)\) is the trivial solution.$PAR"
+  );
+
+$ans1->extra(
+  "There are solutions to the system \( {\mathcal L}{\mathcal S}\left(A,{\bf 0}\right)\) which are not the trivial solution.$PAR",
+  "\(A\) is the identity matrix.$PAR"
+  );
+
+
+$ans2 = new_checkbox_multiple_choice();
+
+$ans2->qa(
+"Let \(A\) be a square matrix. Then \(A\) is nonsingular if and only if . . . (Check all that apply) $PAR",
+"\(A\) is row-equivalent to the identity matrix (of the same size).$PAR",
+"\(\mathcal{N}(A)\) contains only the zero vector.$PAR",
+"The system \( {\mathcal L}{\mathcal S}\left(A,{\bf b}\right)\) has a unique solution for every possible choice of \(\bf b\).$PAR"
+);
+
+$ans2->extra(
+"\(A\) is in RREF.$PAR",
+"\(A\) does not have a row of zeros.$PAR",
+);
+
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-HSE.html",
+   "HSE", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( checkbox_cmp( $ans2->correct_ans() ) );
+
+ENDDOCUMENT();

@@ -1,0 +1,51 @@
+## DESCRIPTION
+## Generic understanding question, to be used in all reading assignments
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+TEXT(beginproblem());
+install_problem_grader(~~&std_problem_grader);
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+Was there anything in this material that was difficult for you to understand?
+If you understood everything perfectly, explain what part of the material
+from this section you found the most interesting.$BR
+\{ essay_box(8,60) \}
+$PAR
+(Your answer will be read and graded manually at a later time.)
+
+END_TEXT
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+$showPartialCorrectAnswers = 0;
+
+ANS( essay_cmp() );
+
+ENDDOCUMENT();

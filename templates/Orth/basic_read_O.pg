@@ -1,0 +1,209 @@
+## DESCRIPTION
+## A set of MC questions for Section O of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl",
+"parserPopUp.pl"
+);
+
+$ansa1 = PopUp( ["?",  "all", "some, but not all,", "no"], "all");
+
+$ansa2 = PopUp( ["?",  "all", "some, but not all,", "no"], "all");
+
+$ansa3 = PopUp( ["?",  "all", "some, but not all,", "no"], "some, but not all,");
+
+$ansa4 = PopUp( ["?",  "all", "some, but not all,", "no"], "all");
+
+$ansa5 = PopUp( ["?",  "all", "some, but not all,", "no"], "no");
+
+$ansa6 = PopUp( ["?",  "all", "some, but not all,", "no"], "some, but not all,");
+
+$ansa7 = PopUp( ["?",  "all", "some, but not all,", "no"], "some, but not all,");
+
+$ansa8 = PopUp( ["?",  "all", "some, but not all,", "no"], "all");
+
+$ansa9 = PopUp( ["?",  "all", "some, but not all,", "no"], "all");
+
+$ansa10 = PopUp( ["?",  "all", "some, but not all,", "no"], "some, but not all,");
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+"Suppose \({\bf u}, {\bf v} \in \mathbb{C}^m\). Then you know that \(\langle {\bf u}, {\bf v} \rangle\) is an element of which set?$PAR",
+"\(\mathbb{C}\).$PAR"
+);
+
+$ans2->extra(
+"\(\mathbb{C}^m\).$PAR",
+"\(\mathbb{R}\).$PAR"
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+"What does it mean for \({\bf u}, {\bf v} \in \mathbb{C}^m\) to be orthogonal?$PAR",
+"\(\langle {\bf u}, {\bf v}\rangle = 0\).$PAR"
+);
+
+$ans3->extra(
+"\(\langle {\bf u}, {\bf v}\rangle \in \mathbb{R}\).$PAR",
+"\(\langle {\bf u}, {\bf v}\rangle \not \in \mathbb{R}\).$PAR"
+);
+
+$ans4 = new_multiple_choice();
+
+$ans4->qa(
+"What does it mean for a set of vectors \(S\) to be an orthogonal set?$PAR",
+"Every vector in \(S\) is orthogonal to every other vector in \(S\).$PAR"
+);
+
+$ans4->extra(
+"Every vector in \(S\) is orthogonal to at least one other vector in \(S\).$PAR",
+"There is at least one vector \({\bf v} \in S\) with is orthogonal to every other vector in \(S\).$PAR"
+);
+
+$ans5 = new_multiple_choice();
+
+$ans5->qa(
+"Given a linearly independent set \(S\) of vectors in \(\mathbb{C}^m\), what does the Gram-Schmidt Procedure produce?$PAR",
+"An orthogonal set \(T\) of vectors with the same span as \(S\).$PAR"
+);
+
+$ans5->extra(
+"A vector \({\bf v} \in \langle S\rangle\) that is orthogonal to every element of \(S\).$PAR",
+"A vector \({\bf v} \not \in \langle S\rangle\) that is orthogonal to every element of \(S\).$PAR"
+);
+
+$ans6 = new_multiple_choice();
+
+$ans6->qa(
+"Select the true statement:$PAR",
+"Every orthogonal set is linearly independent.$PAR"
+);
+
+$ans6->extra(
+"Every linearly independent set is orthogonal.$PAR",
+"There is no relationship between linear independence and orthogonality.$PAR"
+);
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-O.html",
+   "Orthogonality", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a) For each of the following statements, fill in the blank with one of the following choices:$BR
+* all $BR
+* some, but not all, $BR
+* no $PAR
+
+(i) \(\overline{{\bf u} + {\bf v}} = \overline{\bf u} + \overline{\bf v}\) for \{ $ansa1->menu() \} \({\bf u}, {\bf v} \in \mathbb{C}^m\).$PAR
+
+(ii) \(\langle {\bf u} + {\bf v}, {\bf w}\rangle = \langle {\bf u}, {\bf w}\rangle + \langle {\bf v}, {\bf w}\rangle\) for  \{ $ansa2->menu() \} \({\bf u}, {\bf v}, {\bf w} \in \mathbb{C}^m\).$PAR
+
+(iii) \(\langle {\bf u} , {\bf v}\rangle = \langle {\bf v} , {\bf u}\rangle\) for  \{ $ansa3->menu() \} \({\bf u}, {\bf v} \in \mathbb{C}^m\).$PAR
+
+(iv) \(\langle {\bf u} , {\bf v}\rangle = \overline{\langle {\bf v} , {\bf u}\rangle}\) for  \{ $ansa4->menu() \} \({\bf u}, {\bf v} \in \mathbb{C}^m\).$PAR
+
+(v) \(\langle {\bf u}, {\bf u}\rangle < 0\) for  \{ $ansa5->menu() \} \({\bf u} \in \mathbb{C}^m\).$PAR
+
+(vi) \(\overline{\alpha {\bf u}} = \alpha \overline{{\bf u}} \) for  \{ $ansa6->menu() \} \(\alpha \in \mathbb{C}, {\bf u} \in \mathbb{C}^m\).$PAR
+
+(vii) \(\langle \alpha {\bf u}, {\bf v} \rangle = \alpha \langle {\bf u}, {\bf v}\rangle\) for \{ $ansa7->menu() \} \(\alpha \in \mathbb{C}, {\bf u}, {\bf v} \in \mathbb{C}^m\). $PAR
+
+(viii) \(\langle \alpha {\bf u}, {\bf v} \rangle = \overline{\alpha} \langle {\bf u}, {\bf v}\rangle\) for \{ $ansa8->menu() \} \(\alpha \in \mathbb{C}, {\bf u}, {\bf v} \in \mathbb{C}^m\).$PAR
+
+(ix) \(\langle  {\bf u}, \alpha{\bf v} \rangle = \alpha \langle {\bf u}, {\bf v}\rangle\) for \{ $ansa9->menu() \} \(\alpha \in \mathbb{C}, {\bf u}, {\bf v} \in \mathbb{C}^m\). $PAR
+
+(x) \(\langle  {\bf u}, \alpha{\bf v} \rangle = \overline{\alpha} \langle {\bf u}, {\bf v}\rangle\) for \{ $ansa10->menu() \} \(\alpha \in \mathbb{C}, {\bf u}, {\bf v} \in \mathbb{C}^m\). $PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+
+(d)
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+
+(e)
+\{ $ans5->print_q() \}
+\{ $ans5->print_a() \}
+
+(f)
+\{ $ans6->print_q() \}
+\{ $ans6->print_a() \}
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( $ansa1->cmp() );
+ANS( $ansa2->cmp() );
+ANS( $ansa3->cmp() );
+ANS( $ansa4->cmp() );
+ANS( $ansa5->cmp() );
+ANS( $ansa6->cmp() );
+ANS( $ansa7->cmp() );
+ANS( $ansa8->cmp() );
+ANS( $ansa9->cmp() );
+ANS( $ansa10->cmp() );
+
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+ANS( radio_cmp( $ans4->correct_ans() ) );
+ANS( radio_cmp( $ans5->correct_ans() ) );
+ANS( radio_cmp( $ans6->correct_ans() ) );
+ENDDOCUMENT();

@@ -1,0 +1,233 @@
+## DESCRIPTION
+## A set of MC questions for Section MINM of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_checkbox_multiple_choice();
+
+$ans1->qa(
+  "Suppose \(A\) and \(B\) are both \(n \times n\) matrices. Which of the following statements are correct? (Check all that apply.)$PAR",
+  "If \(AB\) is nonsingular, then both \(A\) and \(B\) are nonsingular.$PAR",
+  "If both \(A\) and \(B\) are nonsingular, then \(AB\) is nonsingular.$PAR"
+  );
+
+$ans1->extra(
+"If \(A\) is nonsingular or \(B\) is nonsingular, then \(AB\) is nonsingular.$PAR"
+);
+
+$ans1->makeLast(
+"None of the above.$PAR"
+);
+
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+"Suppose \(A\) and \(B\) are both \(n \times n\) matrices and \(AB = I_n\). Do we then know that \(BA = I_n\)?$PAR",
+"Yes.$PAR"
+);
+
+$ans2->extra(
+"No.$PAR"
+);
+
+$ans3 = new_checkbox_multiple_choice();
+
+$ans3->qa(
+"Suppose \(A\) is an \(n \times n\) matrix. Which of the following statements are correct? (Check all that apply.)$PAR",
+"If \(A\) is nonsingular, then \(A\) is invertible.$PAR",
+"If \(A\) is invertible, then \(A\) is nonsingular.$PAR"
+);
+
+$ans3->makeLast(
+"None of the above.$PAR"
+);
+
+$ans4 = new_multiple_choice();
+
+$ans4->qa(
+"What does the author mean when he says $LQ The following are equivalent$RQ ?$PAR",
+"If any of the listed conditions is true, then all of the listed conditions are true.$PAR"
+);
+
+$ans4->extra(
+"All of the listed conditions are equally important concepts in linear algebra.$PAR",
+"All of the listed conditions are equally rare among square matrices.$PAR"
+);
+
+
+$ans5 = new_multiple_choice();
+
+$ans5->qa(
+"Suppose \(U\) is an \(n \times n\) matrix. What does it mean for \(U\) to be unitary?$PAR",
+"\(U^*U = I_n\)$PAR"
+);
+
+$ans5->extra(
+"\(U^tU = I_n\)$PAR",
+"\(U^{-1} = U\)$PAR"
+);
+
+$ans6 = new_multiple_choice();
+
+$ans6->qa(
+"If \(U\) is a unitary matrix, then what is \(U^{-1}\)?$PAR",
+"\(U^*\)$PAR"
+);
+
+$ans6->extra(
+"\(U^t\)$PAR",
+"\(U\)$PAR",
+);
+
+$ans7 = new_multiple_choice();
+
+$ans7->qa(
+"Let \(A\) be an \(n \times n\) matrix, and that \(S = \lbrace \mathbf{A}_1, \mathbf{A}_2, \dots, \mathbf{A}_n\rbrace\) are the columns of \(A\). Then \(A\) is a unitary matrix if and only if . . .$PAR",
+"\(S\) is an orthonormal set.$PAR"
+);
+
+$ans7->extra(
+"\(S\) is an orthogonal set.$PAR",
+"\(S\) is a linearly independent set.$PAR"
+);
+
+$ans8 = new_multiple_choice();
+
+$ans8->qa(
+"Let \(A\) be an \(n \times n\) matrix, and that \(S = \lbrace \mathbf{A}_1, \mathbf{A}_2, \dots, \mathbf{A}_n\rbrace\) are the columns of \(A\). Then \(A\) is an invertible matrix if and only if . . .$PAR",
+"\(S\) is a linearly independent set.$PAR"
+);
+
+$ans8->extra(
+"\(S\) is an orthogonal set.$PAR",
+"\(S\) is an orthonormal set.$PAR"
+);
+
+$ans9 = new_checkbox_multiple_choice();
+
+$ans9->qa(
+"Which of the following statements are true? (Check all that apply.)$PAR",
+"\(U \mathbf{v}\) and \(U \mathbf{w}\) will have the same length as \(\mathbf{v}\) and \(\mathbf{w}\), respectively.$PAR",
+"The angle between \(U \mathbf{v}\) and \(U \mathbf{w}\) will be the same as the angle between \(\mathbf{v}\) and \(\mathbf{w}\).$PAR"
+);
+
+$ans9->makeLast(
+"None of the above.$PAR",
+);
+
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-MINM.html",
+   "Matrix Inverses and Nonsingular Matrices", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(d) Consider \{ htmlLink( "http://linear.ups.edu/html/section-MINM.html#theorem-NME3", "Theorem NME3", "TARGET='_blank'" ) \}.
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+$PAR
+
+(e)
+\{ $ans5->print_q() \}
+\{ $ans5->print_a() \}
+$PAR
+
+(f) \{ $ans6->print_q() \}
+\{ $ans6->print_a() \}
+$PAR
+
+(g) \{ $ans7->print_q() \}
+\{ $ans7->print_a() \}
+$PAR
+
+(h) \{ $ans8->print_q() \}
+\{ $ans8->print_a() \}
+$PAR
+
+(i) Suppose \(\mathbf{v}, \mathbf{w} \in \mathbb{R}^2\) (i.e., \(\mathbf{v}\) and \(\mathbf{w}\) are vectors of size two with real components). We can view  \(\mathbf{v}\) and \(\mathbf{w}\) as line segments in the Cartesean plane with one endpoint at the origin. (E.g., the vector \(\mathbf{v}\) is visualized as a line segment between the point \((0, 0)\) and the point \(\left([\mathbf{v}]_1, [\mathbf{v}]_2\right)\).) Suppose \(U\) is a \(2 \times 2\) unitary matrix with real entries.
+\{ $ans9->print_q() \}
+\{ $ans9->print_a() \}
+$PAR
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( checkbox_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( checkbox_cmp( $ans3->correct_ans() ) );
+ANS( radio_cmp( $ans4->correct_ans() ) );
+ANS( radio_cmp( $ans5->correct_ans() ) );
+ANS( radio_cmp( $ans6->correct_ans() ) );
+ANS( radio_cmp( $ans7->correct_ans() ) );
+ANS( radio_cmp( $ans8->correct_ans() ) );
+ANS( checkbox_cmp( $ans9->correct_ans() ) );
+
+ENDDOCUMENT();

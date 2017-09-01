@@ -1,0 +1,238 @@
+## DESCRIPTION
+## A set of MC questions for Section MISLE of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "Suppose \(A\) and \(B\) are both \(n \times n\) matrices. What does it mean for \(B\) to be the inverse of \(A\)?$PAR",
+  "\(AB = I_n\), and \(BA = I_n\), where \(I_n\) is the \(n \times n\) identity matrix.$PAR"
+  );
+
+$ans1->extra(
+"\(A + B = \mathcal{0}\), where \(\mathcal{0}\) is the \(n \times n\) zero matrix.$PAR",
+"\(AB = \mathcal{0}\) and \(BA = \mathcal{0}\), where \(\mathcal{0}\) is the \(n \times n\) zero matrix.$PAR",
+"\(A + B = I_n\), where \(I_n\) is the \(n \times n\) identity matrix.$PAR"
+);
+
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+"Which of the following statements is true?$PAR",
+"Not every square matrix has an inverse, but if a square matrix \(A\) has an inverse, that inverse is unique.$PAR"
+);
+
+$ans2->extra(
+"Every square matrix has a unique inverse.$PAR",
+"Every square matrix has at lease one inverse, but some square matrices have multiple inverses.$PAR",
+"Not every square matrix has an inverse, but some square matrices have multiple inverses.$PAR"
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+"What is the name that Beezer gives for the theorem that states \((AB)^{-1} = B^{-1}A^{-1}\) when \(A\) and \(B\) are invertible?$PAR",
+"Socks and shoes.$PAR"
+);
+
+$ans3->extra(
+"Sticks and stones.$PAR",
+"Sour cream and guacamole.$PAR",
+"Syrup and butter.$PAR",
+"Peanut butter and jelly.$PAR",
+"Han Solo and Chewbacca.$PAR",
+"Macaroni and cheese.$PAR",
+"Coffee and tea.$PAR",
+"Rye and sourdough.$PAR")
+;
+
+$ans4 = new_multiple_choice();
+
+$ans4->qa(
+"Suppose \(A\) is an invertible \(n \times n\) matrix, and \(\mathbf{b} \in \mathbb{C}^n\). Then which is the solution to \(\mathcal{LS}(A, \mathbf{b})\)?$PAR",
+"\(A^{-1}\mathbf{b}\).$PAR"
+);
+
+$ans4->extra(
+"\(A\mathbf{b}\).$PAR",
+);
+
+$ans4->makeLast(
+"There isn't enough information given to tell.$PAR"
+);
+
+$ans5 = new_multiple_choice();
+
+$ans5->qa(
+"If \(A\) is invertible, then what is \((A^{-1})^{-1}\)?$PAR",
+"\(A\)$PAR"
+);
+
+$ans5->extra(
+"\(A^t\)$PAR",
+);
+
+$ans5->makeLast(
+"There's no guarantee that \(A^{-1}\) is invertible.$PAR"
+);
+
+$ans6 = new_multiple_choice();
+
+$ans6->qa(
+"If \(A\) is invertible, then what is \((A^t)^{-1}\)?$PAR",
+"\((A^{-1})^t\)$PAR"
+);
+
+$ans6->extra(
+"\(A^t\)$PAR",
+"\(A^{-1}\)$PAR",
+);
+
+$ans6->makeLast(
+"There's no guarantee that \(A^t\) is invertible.$PAR"
+);
+
+$ans7 = new_multiple_choice();
+
+$ans7->qa(
+"If \(A\) is invertible and \(\alpha \in \mathbb{C}\) with \(\alpha \not = 0\), then what is \((\alpha A)^{-1}\)?$PAR",
+"\((1/\alpha)A^{-1}\)$PAR"
+);
+
+$ans7->extra(
+"\(\alpha A^{-1}\)$PAR"
+);
+
+$ans7->makeLast(
+"There's no guarantee that \(\alpha A\) is invertible.$PAR"
+);
+
+$ans8 = new_multiple_choice();
+
+$ans8cor = "There's no guarantee that \(A + B\) is invertible.$PAR";
+
+$ans8->qa(
+"If \(A\) and \(B\) are invertible \(n \times n\) matrices, then what is \((A + B)^{-1}\)?$PAR",
+$ans8cor
+);
+
+$ans8->extra(
+"\(A^{-1} + B^{-1}\)$PAR",
+"\(A^{-1} - B^{-1}\)$PAR",
+"\(B^{-1} - A^{-1}\)$PAR",
+);
+
+$ans8->makeLast(
+$ans8cor
+);
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-MISLE.html",
+   "Matrix Inverses and Systems of Linear Equations", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(d)
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+$PAR
+
+(e)
+\{ $ans5->print_q() \}
+\{ $ans5->print_a() \}
+$PAR
+
+(f) \{ $ans6->print_q() \}
+\{ $ans6->print_a() \}
+$PAR
+
+(g) \{ $ans7->print_q() \}
+\{ $ans7->print_a() \}
+$PAR
+
+(h) \{ $ans8->print_q() \}
+\{ $ans8->print_a() \}
+$PAR
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+ANS( radio_cmp( $ans4->correct_ans() ) );
+ANS( radio_cmp( $ans5->correct_ans() ) );
+ANS( radio_cmp( $ans6->correct_ans() ) );
+ANS( radio_cmp( $ans7->correct_ans() ) );
+ANS( radio_cmp( $ans8->correct_ans() ) );
+
+ENDDOCUMENT();

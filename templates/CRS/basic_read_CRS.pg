@@ -1,0 +1,189 @@
+## DESCRIPTION
+## A set of MC questions for Section CRS of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "Suppose \(A\) is a matrix. What is \(\mathcal{C}(A)\)?$PAR",
+  "The span of the columns of \(A\), viewed as vectors.$PAR"
+  );
+
+$ans1->extra(
+"A set of linearly independent vectors of \(A\).$PAR",
+"The solutions to \(\mathcal{LS}(A, \mathbf{e}_j)\) for each \(j\).$PAR"
+);
+
+$ans2 = new_checkbox_multiple_choice();
+
+$ans2->qa(
+"Suppose \(A\) is an \(m \times n\) matrix, and \(\mathbf{b} \in \mathbb{C}^m\). Which of the following statements are true? (Check all that apply.)$PAR",
+"If \(\mathbf{b} \in \mathcal{C}(A)\), then \(\mathcal{LS}(A, \mathbf{b})\) is a consistent system.$PAR",
+"If \(\mathcal{LS}(A, \mathbf{b})\) is a consistent system, then \(\mathbf{b} \in \mathcal{C}(A)\).$PAR",
+"\(\mathcal{C}(A) = \left\lbrace A\mathbf{x} : \mathbf{x} \in \mathbb{C}^n \right\rbrace\).$PAR"
+);
+
+$ans2->extra(
+"\(\mathcal{C}(A) = \left\lbrace \mathbf{x} \in \mathbb{C}^n : A\mathbf{x} = \mathbf{0} \right\rbrace\).$PAR"
+);
+
+$ans2->makeLast(
+"None of the above.$PAR"
+);
+
+$ans3 = new_checkbox_multiple_choice();
+
+$ans3->qa(
+"Suppose \(A\) is an \(n \times n\) matrix. Which of the following statements are true? (Check all that apply.)$PAR",
+"If \(A\) is nonsingular, then \(\mathcal{C}(A) = \mathbb{C}^n\).$PAR",
+"If \(\mathcal{C}(A) = \mathbb{C}^n\), then \(A\) is nonsingular.$PAR"
+);
+
+$ans3->extra(
+"If \(A\) is symmetric, then \(\mathcal{C}(A) = \mathbb{C}^n\).$PAR",
+"If \(A\) is Hermitian, then \(\mathcal{C}(A) = \mathbb{C}^n\).$PAR",
+"If \(\mathcal{C}(A) = \mathbb{C}^n\) then \(A\) is symmetric.$PAR",
+"If \(\mathcal{C}(A) = \mathbb{C}^n\) then \(A\) is Hermitian.$PAR"
+);
+
+$ans3->makeLast(
+"None of the above.$PAR"
+);
+
+$ans4 = new_multiple_choice();
+
+$ans4->qa(
+"Suppose \(A\) is a matrix. What is \(\mathcal{R}(A)\)?$PAR",
+"\(\mathcal{C}(A^t)\).$PAR"
+);
+
+$ans4->extra(
+"\(\mathcal{LS}(A^t, \mathbf{0})\).$PAR",
+"\(\mathcal{C}(A^*)\)$PAR",
+"\(\mathcal{LS}(A^*, \mathbf{0})\).$PAR"
+);
+
+$ans5 = new_multiple_choice();
+
+$ans5->qa(
+"Suppose \(A\) and \(B\) are row-equivalent matrices. Which of the following statements is true?$PAR",
+"\(\mathcal{R}(A) = \mathcal{R}(B)\).$PAR"
+);
+
+$ans5->extra(
+"\(\mathcal{C}(A) = \mathcal{C}(B)\).$PAR",
+"\(A^{-1} = B^{-1}\).$PAR"
+);
+
+$ans6 = new_checkbox_multiple_choice();
+
+$ans6->qa(
+"Suppose \(A\) is a matrix, and \(B\) is a row-equivalent matrix in RREF. Let \(S\) be the set of nonzero columns of \(B^t\). Which of the following statements are true? (Check all that apply.)$PAR",
+"\(\mathcal{R}(A) = \langle S \rangle\).$PAR",
+"\(S\) is a linearly independent set.$PAR"
+);
+
+$ans6->makeLast(
+"None of the above.$PAR"
+);
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-CRS.html",
+   "Column and Row Spaces", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(d)
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+$PAR
+
+(e)
+\{ $ans5->print_q() \}
+\{ $ans5->print_a() \}
+$PAR
+
+(f) \{ $ans6->print_q() \}
+\{ $ans6->print_a() \}
+$PAR
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( checkbox_cmp( $ans2->correct_ans() ) );
+ANS( checkbox_cmp( $ans3->correct_ans() ) );
+ANS( radio_cmp( $ans4->correct_ans() ) );
+ANS( radio_cmp( $ans5->correct_ans() ) );
+ANS( checkbox_cmp( $ans6->correct_ans() ) );
+
+ENDDOCUMENT();

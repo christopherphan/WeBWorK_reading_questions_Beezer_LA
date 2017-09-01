@@ -1,0 +1,73 @@
+## DESCRIPTION
+## Reading question 3 from section PD of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Robert A. Beezer')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was coded by Christopher Phan
+## and is an implementation of a reading question
+## from Robert A. Beezer's A First Course in Linear Algebra
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGessaymacros.pl"
+);
+
+
+TEXT(beginproblem());
+install_problem_grader(~~&std_problem_grader);
+
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-PD.html",
+   "Properties of Dimension", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+
+$BBOLD Section $LQ Properties of Dimension$RQ Reading Question 3: $EBOLD$PAR
+
+Row-reduce the matrix \(A\) to reduced row-echelon form. Without any further computations, compute the dimensions of the four subspaces, (a) \(\mathcal{N}(A)\), (b) \(\mathcal{C}(A)\), (c) \(\mathcal{R}(A)\) and (d) \(\mathcal{L}(A)\).
+\[A=
+\begin{bmatrix}
+ 1 & -1 & 2 & 8 & 5 \\
+ 1 & 1 & 1 & 4 & -1 \\
+ 0 & 2 & -3 & -8 & -6 \\
+ 2 & 0 & 1 & 8 & 4
+\end{bmatrix}\]
+$PAR
+\{ essay_box(15,60) \}
+$PAR
+
+(Your answer will be read and graded manually at a later time.)
+$PAR
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+
+
+$showPartialCorrectAnswers = 0;
+
+ANS( essay_cmp() );
+
+
+
+ENDDOCUMENT();

@@ -1,0 +1,177 @@
+## DESCRIPTION
+## A set of MC questions for Section RREF of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "Suppose that \(A\) is a matrix. Then what is \([A]_{ij}\)?$PAR",
+  "An entry in the matrix \(A\).$PAR"
+  );
+
+$ans1->extra(
+  "The whole matrix \(A\).$PAR",
+  "The matrix \(A\) multiplied by  \(\sqrt{-1}\) multiplied by \(j\).$PAR"
+  );
+
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+"If \(A\) is an \(m \times n\) matrix and \(\bf b\) is a column vector of size \(m\), then \( {\mathcal L}{\mathcal S}\left(A,{\bf b}\right)\) is what?$PAR",
+"A system of \(m\) linear equations with \(n\) unknowns.$PAR",
+);
+
+$ans2->extra(
+"The augmented matrix \([A | {\bf b}]\).$PAR",
+"The matrix \(A\) multiplied by the matrix \(\bf b\).$PAR",
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+"The row operations are effectively a restatement of what?$PAR",
+"The equation operations introduced in the section SSLE.$PAR",
+);
+
+$ans3->extra(
+"The definition of a column vector.$PAR",
+"The definition of an \(m \times n\) matrix.$PAR"
+);
+
+$ans4 = new_checkbox_multiple_choice();
+
+$ans4->qa(
+"If a matrix is in reduced row-echelon form (RREF), then the leftmost nonzero entry in each row is necessarily what? (Check all that apply.)$PAR",
+"The only nonzero entry in its column.$PAR",
+"\(1\).$PAR",
+);
+
+$ans4->extra(
+"The only nonzero entry in its row.$PAR",
+"Below any row that is entirely zeroes.$PAR"
+);
+
+$ans5 = new_multiple_choice();
+
+$ans5->qa(
+"If a matrix is in RREF, and there is a row made up entirely of zeros, then it must be placed where?$PAR",
+"Below any row with nonzero entries.$PAR",
+);
+
+$ans5->extra(
+"Anywhere you want it.$PAR",
+"Nowhere: Matrices in RREF can't have a row made up entirely of zeros.$PAR"
+);
+
+$ans6 = new_multiple_choice();
+
+$ans6->qa(
+"Suppose \(A\) is a matrix. Which of the following statements is true?$PAR",
+"There is exactly one matrix in RREF that is row-equivalent to \(A\).$PAR",
+);
+
+$ans6->extra(
+"There is at least one matrix in RREF that is row-equivalent to \(A\), but there could be more than one.$PAR",
+"It may be true that no matrices in RREF are row-equivalent to \(A\).$PAR"
+);
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-RREF.html",
+   "RREF", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(d)
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+$PAR
+
+(e)
+\{ $ans5->print_q() \}
+\{ $ans5->print_a() \}
+$PAR
+
+(f)
+\{ $ans6->print_q() \}
+\{ $ans6->print_a() \}
+$PAR
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+ANS( checkbox_cmp( $ans4->correct_ans() ) );
+ANS( radio_cmp( $ans5->correct_ans() ) );
+ANS( radio_cmp( $ans6->correct_ans() ) );
+ENDDOCUMENT();

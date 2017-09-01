@@ -1,0 +1,68 @@
+## DESCRIPTION
+## Reading question 3 from section FS of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Robert A. Beezer')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was coded by Christopher Phan
+## and is an implementation fo a reading question
+## from Robert A. Beezer's A First Course in Linear Algebra
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGessaymacros.pl"
+);
+
+
+TEXT(beginproblem());
+install_problem_grader(~~&std_problem_grader);
+
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-FS.html",
+   "Four Subsets", "TARGET='_blank'") \} and then answer the following question:$PAR
+
+$BBOLD Section $LQ Four Subsets$RQ Reading Question 3: $EBOLD$PAR
+
+Why is \{ htmlLink( "http://linear.ups.edu/html/section-FS.html#theorem-FS",
+   "Theorem FS", "TARGET='_blank'") \} a great conclusion to \{ htmlLink( "http://linear.ups.edu/html/chapter-M.html",
+      "Chapter M", "TARGET='_blank'") \}?
+
+$PAR
+\{ essay_box(15,60) \}
+$PAR
+
+(Your answer will be read and graded manually at a later time.)
+$PAR
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+
+
+$showPartialCorrectAnswers = 0;
+
+ANS( essay_cmp() );
+
+
+
+ENDDOCUMENT();

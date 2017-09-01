@@ -1,0 +1,126 @@
+## DESCRIPTION
+## A set of MC questions for Section HSE of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "What does it mean for the system of linear equations \( {\mathcal L}{\mathcal S}\left(A,{\bf b}\right)\) to be homogeneous?$PAR",
+  "The vector of constants \(\bf b\) is the zero vector, i.e. \({\bf b} = {\bf 0}\).$PAR"
+  );
+
+$ans1->extra(
+  "The matrix \(A\) is row-equivalent to a matrix \(C\) with a row of zeros.$PAR",
+  "The matrix \(A\) is a square matrix.$PAR"
+  );
+
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+"Suppose \( {\mathcal L}{\mathcal S}\left(A,{\bf b}\right)\) is homogeneous. Then what do we know about its set of solutions?$PAR",
+"The system has at least one solution, called the trivial solution.$PAR",
+);
+
+$ans2->extra(
+"The system has exactly one solution, called the trivial solution.$PAR",
+"The system may not have any solutions, but if the system has a solution, then one must be the trivial solution.$PAR",
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+"Suppose \(A\) is a matrix. Which of the following best describes \(\mathcal{N}(A)\), the null space of \(A\)?$PAR",
+"The solution set to \( {\mathcal L}{\mathcal S}\left(A,{\bf 0}\right)\).$PAR",
+);
+
+$ans3->extra(
+"The series of matrix operations that can be applied to \(A\) to obtain a matrix in RREF.$PAR",
+"The pivot columns of \(C\), the matrix row-equivalent to \(A\) in RREF.$PAR"
+);
+
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-HSE.html",
+   "HSE", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+
+ENDDOCUMENT();

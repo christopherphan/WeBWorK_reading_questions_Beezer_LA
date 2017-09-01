@@ -1,0 +1,126 @@
+## DESCRIPTION
+## A set of MC questions for Section VO of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "Consider the the expression \(5i + \sqrt{7}\) (an addition of complex numbers) and the expression \({\bf v} + {\bf w}\) (an addition of vectors). Select the most accurate statement.$PAR",
+  "The plus sign has a different (but closely related) meaning in the two expressions.$PAR"
+  );
+
+$ans1->extra(
+  "The plus sign means the exact same thing in the two expressions.$PAR",
+  "The second expression is meaningless because you can't add vectors.$PAR"
+  );
+
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+"Suppose \({\bf v} \in \mathbb{C}^3\) and \(\alpha \in \mathbb{C}\). In the expression \(\alpha {\bf v}\), which is the scalar?$PAR",
+"\(\alpha\), the complex number.$PAR"
+);
+
+$ans2->extra(
+"\({\bf v}\), the vector of size 3.$PAR",
+);
+
+$ans2->makeLast(
+"Neither.$PAR"
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+"What is a consequence of Property AAC?$PAR",
+"We do not have to be careful about how we $LQ parenthesize$RQ the addition of vectors.$PAR"
+);
+
+$ans3->extra(
+"We have to be careful about how we $LQ parenthesize$RQ the addition of vectors.$PAR",
+"Addition of vectors is not commutative.$PAR"
+);
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-VO.html",
+   "VO", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+
+ENDDOCUMENT();

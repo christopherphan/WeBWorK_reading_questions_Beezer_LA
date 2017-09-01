@@ -1,0 +1,191 @@
+## DESCRIPTION
+## A set of MC questions for Section VS of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_checkbox_multiple_choice();
+
+$ans1cor = "Vectors can be any kind of mathematical object.$PAR";
+
+$ans1->qa(
+  "According to Definition VS, what kind of object does a vector $BBOLD have to$EBOLD be? (Check all that apply.)$PAR",
+  $ans1cor
+  );
+
+$ans1->extra(
+"An ordered list of complex numbers.$PAR",
+"A line segment in \(\mathbb{C}^m\) with one end at the origin.$PAR",
+"A magnitude and a direction.$PAR"
+);
+
+$ans1->makeLast(
+$ans1cor
+);
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+  "What is required to be true of a vector space \(V\)?$PAR",
+  "\(1\mathbf{u} = \mathbf{u}\) for \(\mathbf{u} \in V\).$PAR"
+  );
+
+$ans2->extra(
+"The zero vector, \(\mathbf{0}\), is a list of zeros.$PAR",
+"There is an operation to multiply two vectors.$PAR",
+"\(V\) must contain at least two elements.$PAR"
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+  "In a vector space \(V\), the zero vector \(\mathbf{0}\) is . . . $PAR",
+  "unique, and this is a theorem.$PAR"
+  );
+
+$ans3->extra(
+"unique, and this is explicitly required by the definition.$PAR",
+"non-unique, and this is a theorem.$PAR",
+"non-unique, and this is explicitly required by the definition.$PAR"
+);
+
+
+$ans4 = new_multiple_choice();
+
+$ans4->qa(
+  "In a vector space \(V\), what do we know about \(0\mathbf{u}\) (for any \(\mathbf{u} \in V\)) and why?$PAR",
+  "\(0\mathbf{u} = \mathbf{0}\), and this is a theorem.$PAR"
+  );
+
+$ans4->extra(
+"\(0\mathbf{u} = \mathbf{0}\), and this is explicitly required by the definition.$PAR",
+"Without more information, we can not say for certain what \(0\mathbf{u}\) is.$PAR",
+);
+
+$ans4->makeLast(
+"None of the above.$PAR"
+);
+
+$ans5 = new_multiple_choice();
+
+$ans5->qa(
+  "Suppose \(V\) is a vector space, \(\alpha \in \mathbb{C}\), and \(\mathbf{u} \in V\), such that \(\alpha\mathbf{u} = \mathbf{0}\). Then which of the following must be true?$PAR",
+  "\(\alpha = 0\) or \(\mathbf{u} = \mathbf{0}\).$PAR"
+  );
+
+$ans5->extra(
+"\(\alpha = 0\).$PAR",
+"\(\mathbf{u} = \mathbf{0}\).$PAR",
+"\(\alpha = 0\) and \(\mathbf{u} = \mathbf{0}\).$PAR"
+);
+
+$ans6 = new_multiple_choice();
+
+$ans6->qa(
+  "Now that we have an abstract definition of vectors that goes beyond simply column vectors, what is true?$PAR",
+  "We can make minor changes to many of our previous definitions to make them apply to this more abstract setting.$PAR"
+  );
+
+$ans6->extra(
+"We have to re-do everything we've learned from scratch, making the first half of this class a waste.$PAR",
+);
+
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-VS.html",
+   "Vector spaces", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(d)
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+$PAR
+
+(e)
+\{ $ans5->print_q() \}
+\{ $ans5->print_a() \}
+$PAR
+
+(f)
+\{ $ans6->print_q() \}
+\{ $ans6->print_a() \}
+$PAR
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( checkbox_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+ANS( radio_cmp( $ans4->correct_ans() ) );
+ANS( radio_cmp( $ans5->correct_ans() ) );
+ANS( radio_cmp( $ans6->correct_ans() ) );
+
+ENDDOCUMENT();

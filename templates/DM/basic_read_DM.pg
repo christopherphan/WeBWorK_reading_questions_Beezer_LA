@@ -1,0 +1,150 @@
+## DESCRIPTION
+## A set of MC questions for Section DM of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "What is the raison d'etre (main reason for existence) of elementary matrices?$PAR",
+  "To $LQ do$RQ row operations on matrices with matrix multiplication$PAR",
+  );
+
+$ans1->extra(
+"To determine the rank of a matrix.$PAR",
+"To help with the Gram-Schmidt process.$PAR",
+"To provide some obnoxious definitions for you to memorize.$PAR"
+);
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+  "What can be written as a product of elementary matrices?$PAR",
+  "Every nonsingular matrix.$PAR",
+  );
+
+$ans2->extra(
+  "Every symmetric matrix.$PAR",
+  "Every singular matrix.$PAR",
+  "Every matrix made up entirely from \(1\)s and \(0\)s.$PAR"
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+  "The $BBOLD definition$EBOLD of \(\det(A)\) uses expansion about . . .$PAR",
+  "the first row.$PAR",
+  );
+
+$ans3->extra(
+  "the first column.$PAR",
+  "the last row.$PAR",
+  "the last column.$PAR"
+);
+
+$ans4 = new_multiple_choice();
+
+$ans4->qa(
+  "In general, using row or column expansion to find the determinant of an \(n \times n\) matrix (assuming you can't skip any by exploiting zeros) will require computing the determinant of how many \(1 \times 1\) submatrices?$PAR",
+ "\(n!\).$PAR",
+  );
+
+$ans4->extra(
+  "\(n^2\).$PAR",
+  "\(2^n\).$PAR",
+  "\(n\).$PAR"
+);
+
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-DM.html",
+   "Determinant of a Matrix", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(d)
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+$PAR
+
+
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+ANS( radio_cmp( $ans4->correct_ans() ) );
+
+
+ENDDOCUMENT();

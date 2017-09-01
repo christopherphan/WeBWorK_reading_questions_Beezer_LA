@@ -1,0 +1,73 @@
+## DESCRIPTION
+## Reading question 3 from section MO of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Robert A. Beezer')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was coded by Christopher Phan
+## and is an implementation fo a reading question
+## from Robert A. Beezer's A First Course in Linear Algebra
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGessaymacros.pl"
+);
+
+
+TEXT(beginproblem());
+install_problem_grader(~~&std_problem_grader);
+
+
+BEGIN_TEXT
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-MO.html",
+   "Matrix operations", "TARGET='_blank'") \} and then answer the following question:$PAR
+
+$BBOLD Section $LQ Matrix operations$RQ Reading Question 3: $EBOLD$PAR
+
+Compute the transpose of the matrix below.
+
+\[
+\begin{bmatrix}
+6 & 8 & 4 \\
+-2 & 1 & 0 \\
+9 & -5 & 6
+\end{bmatrix}
+\]
+
+$PAR
+\{ essay_box(15,60) \}
+$PAR
+
+(Your answer will be read and graded manually at a later time.)
+$PAR
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+
+
+$showPartialCorrectAnswers = 0;
+
+ANS( essay_cmp() );
+
+
+
+ENDDOCUMENT();

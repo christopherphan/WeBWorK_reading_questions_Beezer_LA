@@ -1,0 +1,147 @@
+## DESCRIPTION
+## A set of MC questions for Section D of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "Suppose \(V\) is a vector space and \(B\) and \(C\) are both bases for \(V\). What can we conclude about \(B\) and \(C\)?$PAR",
+  "\(B\) and \(C\) are the same size.$PAR",
+  );
+
+$ans1->extra(
+"\(B = C\).$PAR",
+"If \(B \not = C\), then \(B \subset C\) or \(C \subset B\).$PAR",
+"If \(B \not = C\), then \(\langle \mathbf{u} , \mathbf{v} \rangle = 0\) for \(\mathbf{u} \in B\) and \(\mathbf{v} \in C\).$PAR"
+);
+
+$ans2 = new_multiple_choice();
+
+
+$ans2->qa(
+  "Suppose \(V\) is a vector space. What is the dimension of \(V\)?$PAR",
+  "If \(V\) has a finite basis \(B\), then the dimension is the number of elements in \(B\). If \(V\) has no finite basis, then \(V\) has infinite dimension.$PAR",
+  );
+
+$ans2->extra(
+  "If \(V \subseteq \mathbb{C}^m\), then the dimension is \(m\), size of the column vectors in \(V\). If \(V \not \subseteq \mathbb{C}^m\) for any \(m\), then \(V\) has infinite dimension.$PAR",
+  "If \(V = \mathcal{N}(A)\) for some \(n \times n\) matrix \(A\), then the dimension is \(n\). If \(V \not = \mathcal{N}(A)\) for any matrix \(A\), then \(V\) has infinite dimension.$PAR",
+  "If \(V\) has at least one finite basis, then the dimension is the number of possible finite bases. If \(V\) has no finite basis, then \(V\) has infinite dimension.$PAR"
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+  "Let \(A\) be an \(m \times n\) matrix. What is the rank of \(A\), \(r(A)\)?$PAR",
+  "The dimension of the column space of \(A\),  \(r(A) = \dim \left(\mathcal{C}(A) \right)\).$PAR",
+  );
+
+$ans3->extra(
+  "The dimension of the null space of \(A\), \(r(A) = \dim \left(\mathcal{N}(A) \right)\).$PAR",
+  "The number of columns of \(A\), \(r(A) = n\).$PAR",
+  "The number of rows of \(A\), \(r(A) = m\).$PAR",
+);
+
+$ans4 = new_multiple_choice();
+
+$ans4->qa(
+  "Let \(A\) be an \(m \times n\) matrix. What is the nullity of \(A\), \(n(A)\)?$PAR",
+  "The dimension of the null space of \(A\), \(n(A) = \dim \left(\mathcal{N}(A) \right)\).$PAR",
+  );
+
+$ans4->extra(
+  "The dimension of the column space of \(A\),  \(n(A) = \dim \left(\mathcal{C}(A) \right)\).$PAR",
+  "The number of columns of \(A\), \(n(A) = n\).$PAR",
+  "The number of rows of \(A\), \(n(A) = m\).$PAR",
+);
+
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-D.html",
+   "Dimension", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(d)
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+$PAR
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+ANS( radio_cmp( $ans4->correct_ans() ) );
+
+ENDDOCUMENT();

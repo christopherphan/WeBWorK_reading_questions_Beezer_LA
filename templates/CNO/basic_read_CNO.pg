@@ -1,0 +1,108 @@
+## DESCRIPTION
+## A set of MC questions for Section CNO of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "Beezer describes a complex number as . . .$PAR",
+  "a linear combination of \(1\) and \(i = \sqrt{-1}\).$PAR"
+  );
+
+$ans1->extra(
+"the same as an imaginary number.$PAR",
+"an unnecessary abstraction..$PAR"
+);
+
+
+$ans2 = new_checkbox_multiple_choice();
+
+$ans2->qa(
+"Which of the following facts is given as (part of) a $BBOLD theorem $EBOLD , rather than a definition: (Check all that apply.)$PAR",
+"For every \(\alpha \in \mathbb{C}\), \(\alpha \not = 0\) there exists \(\frac{1}{\alpha} \in \mathbb{C}\) so that \(\alpha\left(\frac{1}{\alpha}\right) = 1\).$PAR",
+"For any \(\alpha, \beta, \gamma \in \mathbb{C}\), \(\alpha(\beta\gamma)=(\alpha\beta)\gamma\).$PAR"
+);
+
+$ans2->extra(
+"If \(\alpha = a + bi\) and \(\beta = c + di\), then \(\alpha + \beta = (a + c) + (b+d)i\).$PAR",
+"If \(\alpha = a + bi\) and \(\beta = c + di\), then \(\alpha\beta = (ac - bd) + (ad + bc)i\).$PAR"
+);
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-CNO.html",
+   "Complex number operations", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+(b)
+\{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( checkbox_cmp( $ans2->correct_ans() ) );
+
+
+ENDDOCUMENT();

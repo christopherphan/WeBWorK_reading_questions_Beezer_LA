@@ -1,0 +1,219 @@
+## DESCRIPTION
+## A set of MC questions for Section FS of Beezer's linear algebra
+## ENDDESCRIPTION
+
+## Author('Christopher Phan')
+## Institution('Winona State University')
+
+##################################
+## Authorship and Copyright info:
+##################################
+## This question was written by Christopher Phan and is based on
+## Robert A. Beezer's A First Course in Linear Algebra.
+##
+## See the associated file copyright_info/index.html for more details.
+##
+## Permission is granted to copy, distribute and/or modify this document
+## under the terms of the GNU Free Documentation License, Version 1.2 or any
+## later version published by the Free Software Foundation; with no Invariant
+## Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+
+#######################
+## Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"parserRadioButtons.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGessaymacros.pl"
+);
+
+$ans1 = new_multiple_choice();
+
+$ans1->qa(
+  "Suppose \(A\) is an \(m \times n\) matrix. What is \(\mathcal{L}(A)\)?$PAR",
+  "\(\mathcal{N}(A^t)\).$PAR"
+  );
+
+$ans1->extra(
+"The set of solutions to \(\mathcal{LS}(A, \mathbf{0})\).$PAR",
+"\(\mathcal{N}(A^*)\).$PAR"
+);
+
+$ans2 = new_multiple_choice();
+
+$ans2->qa(
+"Which matrix is guaranteed to be nonsingular?$PAR",
+"\(J\)$PAR"
+);
+
+$ans2->extra(
+"\(B\).$PAR",
+"\(K\).$PAR",
+"\(L\).$PAR"
+);
+
+$ans3 = new_multiple_choice();
+
+$ans3->qa(
+"Which of the following equations is true?$PAR",
+"\(B = JA\).$PAR"
+);
+
+$ans3->extra(
+"\(J = BA\).$PAR",
+"\(B = JK\).$PAR",
+"\(L = CK\).$PAR",
+);
+
+$ans4 = new_multiple_choice();
+
+$ans4->qa(
+"Which of the following is equal to \(\mathcal{N}(A)\)?$PAR",
+"\(\mathcal{N}(C)\).$PAR"
+);
+
+$ans4->extra(
+"\(\mathcal{R}(C)\).$PAR",
+"\(\mathcal{N}(L)\)$PAR",
+"\(\mathcal{R}(L)\).$PAR"
+);
+
+$ans5 = new_multiple_choice();
+
+$ans5->qa(
+"Which of the following is equal to \(\mathcal{R}(A)\)?$PAR",
+"\(\mathcal{R}(C)\).$PAR"
+);
+
+$ans5->extra(
+"\(\mathcal{N}(C)\).$PAR",
+"\(\mathcal{N}(L)\)$PAR",
+"\(\mathcal{R}(L)\).$PAR"
+);
+
+$ans6 = new_multiple_choice();
+
+$ans6->qa(
+"Which of the following is equal to \(\mathcal{C}(A)\)?$PAR",
+"\(\mathcal{N}(L)\).$PAR"
+);
+
+$ans6->extra(
+"\(\mathcal{N}(C)\).$PAR",
+"\(\mathcal{R}(C)\)$PAR",
+"\(\mathcal{R}(L)\).$PAR"
+);
+
+$ans7 = new_multiple_choice();
+
+$ans7->qa(
+"Which of the following is equal to \(\mathcal{L}(A)\)?$PAR",
+"\(\mathcal{R}(L)\).$PAR"
+);
+
+$ans7->extra(
+"\(\mathcal{N}(C)\).$PAR",
+"\(\mathcal{R}(C)\)$PAR",
+"\(\mathcal{N}(L)\).$PAR"
+);
+
+$ans8 = new_multiple_choice();
+
+$ans8->qa(
+"Suppose we have a homogeneous system of equations with no equations. Describe the solution set.$PAR",
+"Every vector (of the appropriate size) is a solution.$PAR"
+);
+
+$ans8->extra(
+"Only the zero vector is a solution.$PAR",
+"There are no solutions.$PAR"
+);
+
+TEXT(beginproblem());
+
+
+#######################
+## Setup
+
+Context("Numeric");
+
+
+#######################
+## Main text
+
+BEGIN_TEXT
+
+
+Read the section \{ htmlLink( "http://linear.ups.edu/html/section-FS.html",
+   "Four Subsets", "TARGET='_blank'") \} and then answer the following questions:$PAR
+
+(a)
+\{ $ans1->print_q() \}
+\{ $ans1->print_a() \}
+$PAR
+
+$BBOLD Problems (b)-(g) refer to the following:$EBOLD$PAR
+ Suppose \(A\) is an \(m \times n\) matrix, and that we perform the following row reduction:
+\[[A|I_m] \xrightarrow{RREF} N = [B|J] =  \left[\begin{array}{c|c}C&K\\\hline0&L\end{array}\right],\]
+where \(C\) is the \(r \times n\) matrix formed from all the nonzero rows of \(B\).
+$PAR
+(b) \{ $ans2->print_q() \}
+\{ $ans2->print_a() \}
+$PAR
+
+(c)
+\{ $ans3->print_q() \}
+\{ $ans3->print_a() \}
+$PAR
+
+(d)
+\{ $ans4->print_q() \}
+\{ $ans4->print_a() \}
+$PAR
+
+(e)
+\{ $ans5->print_q() \}
+\{ $ans5->print_a() \}
+$PAR
+
+(f) \{ $ans6->print_q() \}
+\{ $ans6->print_a() \}
+$PAR
+
+(g) \{ $ans7->print_q() \}
+\{ $ans7->print_a() \}
+$PAR
+
+(h) \{ $ans8->print_q() \}
+\{ $ans8->print_a() \}
+$PAR
+
+(\{ htmlLink( "${htmlURL}copyright_info/index.html",
+   "Copyright and authorship info", "TARGET='_blank'") \})
+
+END_TEXT
+
+
+Context()->normalStrings;
+#######################
+## Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( radio_cmp( $ans1->correct_ans() ) );
+ANS( radio_cmp( $ans2->correct_ans() ) );
+ANS( radio_cmp( $ans3->correct_ans() ) );
+ANS( radio_cmp( $ans4->correct_ans() ) );
+ANS( radio_cmp( $ans5->correct_ans() ) );
+ANS( radio_cmp( $ans6->correct_ans() ) );
+ANS( radio_cmp( $ans7->correct_ans() ) );
+ANS( radio_cmp( $ans8->correct_ans() ) );
+
+ENDDOCUMENT();
