@@ -1,11 +1,11 @@
 # WeBWorK_reading_questions_Beezer_LA
-WeBWorK reading questions for [A First Course in Linear Algebra](http://linear.ups.edu/index.html) by Robert A. Beezer.
+WeBWorK reading questions for [*A First Course in Linear Algebra*](http://linear.ups.edu/index.html) by Robert A. Beezer.
 
 Christopher Phan, Ph.D., <cphan@chrisphan.com>
 
 ## Description
 
-This repository contains WeBWorK reading questions for the GFDL-licensed textbook [A First Course in Linear Algebra](http://linear.ups.edu/index.html) by Robert A. Beezer. They are meant to be assigned before the material is covered in class, to encourage students to read the book.
+This repository contains WeBWorK reading questions for the GFDL-licensed textbook [*A First Course in Linear Algebra*](http://linear.ups.edu/index.html) by Robert A. Beezer. They are meant to be assigned before the material is covered in class, to encourage students to read the book.
 
 The problems are in folders named after the corresponding section in Beezer's book. However, WeBWorK does not appear to like one-character folder names; hence, the folders ``Bases``, ``Dimension``, ``Orth``, and ``Subspaces`` for Sections [B](http://linear.ups.edu/html/section-B.html), [D](http://linear.ups.edu/html/section-D.html]), [O](http://linear.ups.edu/html/section-O.html), and [S](http://linear.ups.edu/html/section-S.html), respectively.
 
